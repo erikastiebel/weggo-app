@@ -1,0 +1,50 @@
+{
+  "name": "weggo-app",
+  "version": "1.0.0",
+  "description": "Vegetarian recipes search app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikastiebel/weggo-app.git"
+  },
+  "keywords": [
+    "vegetarian",
+    "recipes",
+    "webapp",
+    "react"
+  ],
+  "author": "Erika Stiebel, Wictor Stiebel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erikastiebel/weggo-app/issues"
+  },
+  "homepage": "https://github.com/erikastiebel/weggo-app#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "img-loader": "^2.0.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.3"
+  },
+  "dependencies": {
+    "moment": "^2.19.1",
+    "normalize.css": "^7.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  }
+}
