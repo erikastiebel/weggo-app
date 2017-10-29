@@ -20,22 +20,32 @@ module.exports = {
     rules: [{
       test: /\.jsx$/,
       exclude: /node_modules/,
-      use: {
-        loader: 'react-hot-loader', 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-      },
+      use: [
+        {
+          loader: 'babel-loader',
+            options: {
+              presets: ['env']
+            }
+        },
+        {
+          loader: 'react-hot-loader'
+        }
+      ],
     },
     {
       test: /\.js$/,
       exclude: /node_modules/,
-      use: {
-        loader: 'react-hot-loader', 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-      },
+      use: [
+        {
+          loader: 'babel-loader',
+            options: {
+              presets: ['env']
+            }
+        },
+        {
+          loader: 'react-hot-loader'
+        }
+      ],
     },
     {
       test: /\.scss$/,
