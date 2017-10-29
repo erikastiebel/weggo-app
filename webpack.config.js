@@ -8,9 +8,10 @@ module.exports = {
 
   context: path.resolve(__dirname, './app/js/'),
 
-  entry: {
-    main: './main.jsx'
-  },
+  entry: [
+    'react-hot-loader/patch',
+    './main.jsx'
+  ],
   output: {
     path: path.resolve(__dirname, './dist/assets'),
     filename: '[name].bundle.js',
@@ -20,32 +21,22 @@ module.exports = {
     rules: [{
       test: /\.jsx$/,
       exclude: /node_modules/,
-      use: [
-        {
-          loader: 'babel-loader',
-            options: {
-              presets: ['env']
-            }
-        },
-        {
-          loader: 'react-hot-loader'
-        }
-      ],
+      use: {
+        loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
+      },
     },
     {
       test: /\.js$/,
       exclude: /node_modules/,
-      use: [
-        {
-          loader: 'babel-loader',
-            options: {
-              presets: ['env']
-            }
-        },
-        {
-          loader: 'react-hot-loader'
-        }
-      ],
+      use: {
+        loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
+      },
     },
     {
       test: /\.scss$/,
