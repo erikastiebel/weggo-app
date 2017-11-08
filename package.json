@@ -2,11 +2,15 @@
   "name": "weggo-app",
   "version": "1.0.0",
   "description": "Vegetarian recipes search app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "webpack-dev-server --open",
+    "server": "nodemon server.js",
     "build": "webpack --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "watch": "server.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +38,7 @@
     "file-loader": "^1.1.5",
     "img-loader": "^2.0.0",
     "node-sass": "^4.5.3",
+    "nodemon": "^1.12.1",
     "react-hot-loader": "^3.1.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
