@@ -2,20 +2,27 @@
 
 const path = require("path");
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 
-  context: path.resolve(__dirname, "./app/js/"),
+  context: path.resolve(__dirname, './app'),
 
   entry: [
+    // "webpack-hot-middleware/client?reload=true"
     "react-hot-loader/patch",
-    "./main.jsx"
+    "./js/main.jsx"
   ],
   output: {
-    path: path.resolve(__dirname, "./dist/assets"),
+    path: path.resolve(__dirname, "./dist"),
     filename: "[name].bundle.js",
-    publicPath: "/assets/"
+    publicPath: "/"
+  },
+  devServer: {
+    proxy: {
+      "/api/weggo": "http://localhost:3000"
+    }
   },
   module: {
     rules: [{
@@ -24,7 +31,7 @@ module.exports = {
       use: {
         loader: "babel-loader",
           options: {
-            presets: ["env"]
+            presets: ["react", "env", "stage-0"]
           }
       },
     },
@@ -34,7 +41,7 @@ module.exports = {
       use: {
         loader: "babel-loader",
           options: {
-            presets: ["env"]
+            presets: ["react", "env", "stage-0"]
           }
       },
     },
@@ -54,7 +61,18 @@ module.exports = {
     }]
   },
   plugins: [
-      new ExtractTextPlugin("style.css")
+      new ExtractTextPlugin("style.css"),
+      new HtmlWebpackPlugin({
+        template: "index.html",
+        inject: "body",
+        filename: "index.html"
+      })
+      // new webpack.HotModuleReplacementPlugin()
+      // new webpack.optimize.OccurrenceOrderPlugin(),
+      // new webpack.NamedModulesPlugin(),
+      // new webpack.NoEmitOnErrorsPlugin(),
+
+
   ],
   resolve: {
    extensions: [".js", ".jsx"],
