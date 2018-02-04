@@ -1,0 +1,17 @@
+.button__container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.button__item-wrapper {
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button__item {
+  background: transparent;
+  border: solid 1px $black;
+  padding: 5px 30px;
+}

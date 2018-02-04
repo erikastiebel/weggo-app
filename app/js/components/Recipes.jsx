@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import { fetchRecipes } from "../actions/actions";
-import { connect } from "react-redux";
+import { fetchRecipes } from '../actions/actions';
+import { connect } from 'react-redux';
 
 // const classNames = require("classnames");
 
@@ -16,16 +16,22 @@ function makeRecipesList(recipeObject) {
 }
 
 class Recipes extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+  
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    makeRecipesList: PropTypes.array.isRequired
+    recipesList: PropTypes.array.isRequired
   }
 
-renderRecipes() {
-  return this.props.makeRecipesList.map(function(recipe, index) {
-    return <li key={index}>{recipe.title}</li>;
-  });
-}
+  renderRecipes() {
+    return this.props.recipesList.map(function(recipe, index) {
+      return <li key={index}>{recipe.title}</li>;
+
+    });
+  }
 
   componentDidMount() {
     this.props.dispatch(fetchRecipes());
@@ -33,7 +39,7 @@ renderRecipes() {
 
   render() {
     return (
-      <div>
+      <div className="recipes__container">
         <ul>
           { this.renderRecipes()}
         </ul>
@@ -44,8 +50,8 @@ renderRecipes() {
 
 function mapStateToProps(state) {
   return {
-    recipesData: state.recipesData,
-    makeRecipesList: makeRecipesList(state.recipesData)
+    recipesData: state.randomRecipesData.visibleRecipes,
+    recipesList: makeRecipesList(state.randomRecipesData.visibleRecipes)
   };
 }
 
