@@ -46,11 +46,10 @@ return (dispatch) => {
       visibleRecipes = state.visibleRecipes;
       usedRecipes = state.usedRecipes;
     }
-    else{
+    else {
       visibleRecipes = [];
       usedRecipes = [];
     }
-
     for(let i = 1; i <= numberOfRecipes; i++) {
       let randomRecipeIndex = randomNumber(state);
       usedRecipes.push(state.recipesData[randomRecipeIndex].id);

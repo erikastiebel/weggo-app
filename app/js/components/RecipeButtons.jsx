@@ -15,9 +15,6 @@ class RecipeButtons extends React.Component {
     state: PropTypes.object.isRequired
   }
 
-  // componentDidMount() {
-  //   this.props.dispatch();
-  // }
 
   render() {
     return (
