@@ -48,7 +48,6 @@ var visibleRecipes = [];
 var usedRecipes = [];
 
 export const getRandomRecipes = (state, numberOfRecipes, index = null) => {
-  console.log('Jag är klickad!!!!!!', state, numberOfRecipes, index);
   return (dispatch) => {
     if (numberOfRecipes !== null || undefined) {
       if (numberOfRecipes === 1) {
@@ -103,7 +102,6 @@ const checkSelecedRecipe = (state, num) => {
 
 export const loginUserWithEmailAndPassword = (state, email, password) => {
   return dispatch => {
-    console.log('!!!!!em ', email, 'pw ', password);
     const urlWithParams = loginUserEndpoint + '?username='+ encodeURIComponent(email) +'&password='+ encodeURIComponent(password);
     return fetch(urlWithParams, {
       method: 'POST'
@@ -111,6 +109,7 @@ export const loginUserWithEmailAndPassword = (state, email, password) => {
     .then((res) => res.json(),
     (error) => console.log('An error occurred.', error))
     .then(data => {
+      console.log(data);
       dispatch(reciveUserInfo(data));
     })
   }
