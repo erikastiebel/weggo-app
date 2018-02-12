@@ -1,8 +1,17 @@
 export const RECEIVE_RECIPES = 'RECEIVE_RECIPES';
 export const RANDOM_RECIPES = 'RANDOM_RECIPES';
+export const RECEIVE_USERINFO = 'RECEIVE_USERINFO';
 
-const url = '/api/weggo/recipies';
+//May be moved to config file
+const recipesEndpoint = '/api/weggo/recipies';
+const loginUserEndpoint = '/api/weggo/user/loginuser';
 
+function reciveUserInfo(data) {
+  return {
+    type: RECEIVE_USERINFO,
+    userInfoData: data
+  }
+}
 
 function receiveRecipes(data) {
   return {
@@ -21,7 +30,7 @@ function randomRecipes(data) {
 //Feching recipes from the Carrot API
 export function fetchRecipes() {
   return dispatch => {
-    return fetch(url)
+    return fetch(recipesEndpoint)
     .then((res) => res.json(),
     (error) => console.log('An error occurred.', error))
     .then(data => {
@@ -40,34 +49,34 @@ var usedRecipes = [];
 
 export const getRandomRecipes = (state, numberOfRecipes, index = null) => {
   console.log('Jag är klickad!!!!!!', state, numberOfRecipes, index);
-return (dispatch) => {
-  if (numberOfRecipes !== null || undefined) {
-    if (numberOfRecipes === 1) {
-      visibleRecipes = state.visibleRecipes;
-      usedRecipes = state.usedRecipes;
-    }
-    else {
-      visibleRecipes = [];
-      usedRecipes = [];
-    }
-    for(let i = 1; i <= numberOfRecipes; i++) {
-      let randomRecipeIndex = randomNumber(state);
-      usedRecipes.push(state.recipesData[randomRecipeIndex].id);
-      if (index === null) {
-        visibleRecipes.push(state.recipesData[randomRecipeIndex]);
+  return (dispatch) => {
+    if (numberOfRecipes !== null || undefined) {
+      if (numberOfRecipes === 1) {
+        visibleRecipes = state.visibleRecipes;
+        usedRecipes = state.usedRecipes;
       }
       else {
-          visibleRecipes[index] = state.recipesData[randomRecipeIndex];
+        visibleRecipes = [];
+        usedRecipes = [];
+      }
+      for(let i = 1; i <= numberOfRecipes; i++) {
+        let randomRecipeIndex = randomNumber(state);
+        usedRecipes.push(state.recipesData[randomRecipeIndex].id);
+        if (index === null) {
+          visibleRecipes.push(state.recipesData[randomRecipeIndex]);
+        }
+        else {
+            visibleRecipes[index] = state.recipesData[randomRecipeIndex];
+        }
       }
     }
+    // console.log('visibleRecipes: ', visibleRecipes);
+    // console.log('usedRecipes: ', usedRecipes);
+    dispatch(randomRecipes({
+      usedRecipes: usedRecipes,
+      visibleRecipes: visibleRecipes
+    }));
   }
-  // console.log('visibleRecipes: ', visibleRecipes);
-  // console.log('usedRecipes: ', usedRecipes);
-  dispatch(randomRecipes({
-    usedRecipes: usedRecipes,
-    visibleRecipes: visibleRecipes
-  }));
-}
 }
 //funktion som slumpar fram ett indextal för att välja nytt recept.
 const randomNumber = (state) => {
@@ -88,5 +97,21 @@ const checkSelecedRecipe = (state, num) => {
   }
   else{
     return false;
+  }
+}
+
+
+export const loginUserWithEmailAndPassword = (state, email, password) => {
+  return dispatch => {
+    console.log('!!!!!em ', email, 'pw ', password);
+    const urlWithParams = loginUserEndpoint + '?username='+ encodeURIComponent(email) +'&password='+ encodeURIComponent(password);
+    return fetch(urlWithParams, {
+      method: 'POST'
+    })
+    .then((res) => res.json(),
+    (error) => console.log('An error occurred.', error))
+    .then(data => {
+      dispatch(reciveUserInfo(data));
+    })
   }
 }
