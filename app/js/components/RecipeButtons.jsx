@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getRandomRecipes} from '../actions/actions';
+import { NavLink } from 'react-router-dom';
 
 
-class RecipeButtons extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
+class RecipeButtons extends Component {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     state: PropTypes.object.isRequired
   }
 
-
   render() {
     return (
       <div className="button__container">
         <div className="button__item-wrapper">
-          <button className="button__item" onClick={() => this.props.dispatch(getRandomRecipes(this.props.state, 3))}>3</button>
-          <button className="button__item" onClick={() => this.props.dispatch(getRandomRecipes(this.props.state, 5))}>5</button>
-          <button className="button__item" onClick={() => this.props.dispatch(getRandomRecipes(this.props.state, 6))}>6</button>
+          <NavLink className="button__item" to="/recipes/3">3</NavLink>
+          <NavLink className="button__item" to="/recipes/5">5</NavLink>
+          <NavLink className="button__item" to="/recipes/6">6</NavLink>
         </div>
       </div>
     );
@@ -31,10 +27,9 @@ class RecipeButtons extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    randomRecipesData: state.randomRecipesData,
-    state: state
+    state: state,
+    randomRecipesData: state.randomRecipesData
   }
 };
-
 
 export default connect(mapStateToProps)(RecipeButtons);

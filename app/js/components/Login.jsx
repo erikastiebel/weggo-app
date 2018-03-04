@@ -1,20 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUserWithEmailAndPassword } from '../actions/actions';
 
 
-class Login extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
+class Login extends Component {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     state: PropTypes.object.isRequired
   }
-
 
   render() {
     return (
@@ -34,6 +29,5 @@ const mapStateToProps = state => {
     state: state
   }
 };
-
 
 export default connect(mapStateToProps)(Login);

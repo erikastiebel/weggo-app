@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { fetchRecipes } from '../actions/actions';
+import { getRandomRecipes } from '../actions/actions';
 import { connect } from 'react-redux';
 
-// const classNames = require("classnames");
 
 function makeRecipesList(recipeObject) {
   const recipesList = [];
@@ -15,14 +14,15 @@ function makeRecipesList(recipeObject) {
   return recipesList;
 }
 
-class Recipes extends React.Component {
+class Recipes extends Component {
 
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+   this.props.dispatch(getRandomRecipes(this.props.state, this.props.match.params.number))
   }
-  
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    recipesData: PropTypes.array.isRequired,
     recipesList: PropTypes.array.isRequired
   }
 
@@ -33,15 +33,11 @@ class Recipes extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.props.dispatch(fetchRecipes());
-  }
-
   render() {
     return (
       <div className="recipes__container">
         <ul>
-          { this.renderRecipes()}
+          {this.renderRecipes()}
         </ul>
       </div>
     );
@@ -50,7 +46,8 @@ class Recipes extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    recipesData: state.randomRecipesData.visibleRecipes,
+    state: state,
+    recipesData: state.recipesData,
     recipesList: makeRecipesList(state.randomRecipesData.visibleRecipes)
   };
 }

@@ -1,25 +1,22 @@
-import React from 'react';
-import Recipes from './Recipes';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import LoadRecipes from './LoadRecipes';
 import RecipeButtons from './RecipeButtons';
+import Recipes from './Recipes';
 import Login from './Login';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
 
 
 const Home = () => (
   <main role="main" className="main">
       <RecipeButtons />
-      <Recipes />
+      <LoadRecipes />
   </main>
 );
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter>
           <div>
               <header className="header">
                   <nav className="header__nav">Navigation</nav>
@@ -28,10 +25,11 @@ export default class App extends React.Component {
               </header>
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
+              <Route path="/recipes/:number" component={Recipes} />
 
               <footer className="footer">Footer</footer>
           </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
