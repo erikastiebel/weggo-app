@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import LoadRecipes from './LoadRecipes';
+import { fetchRecipes } from '../actions/actions';
 import RecipeButtons from './RecipeButtons';
 import Recipes from './Recipes';
 import Login from './Login';
@@ -9,11 +11,19 @@ import Login from './Login';
 const Home = () => (
   <main role="main" className="main">
       <RecipeButtons />
-      <LoadRecipes />
   </main>
 );
 
-export default class App extends Component {
+class App extends Component {
+
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchRecipes());
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -26,10 +36,18 @@ export default class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/recipes/:number" component={Recipes} />
-
               <footer className="footer">Footer</footer>
           </div>
       </BrowserRouter>
     );
   }
 }
+
+function mapStateToProps(state) {
+  const {recipesData} = state;
+  return {
+    recipesData: recipesData
+  };
+}
+
+export default connect(mapStateToProps)(App);

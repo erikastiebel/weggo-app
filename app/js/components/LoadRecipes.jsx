@@ -3,30 +3,32 @@ import PropTypes from 'prop-types';
 import { fetchRecipes } from '../actions/actions';
 import { connect } from 'react-redux';
 
-const  makeRecipesList = (recipeObject) => {
+export const  makeRecipesList = (recipeObject) => {
   const recipesList = [];
-  for (const recipe in recipeObject) {
-    if (recipeObject) {
-      recipesList.push(recipeObject[recipe]);
+  if (recipeObject !== []){
+    for (const recipe in recipeObject) {
+      if (recipeObject) {
+        recipesList.push(recipeObject[recipe]);
+      }
     }
   }
   return recipesList;
 }
 
-class LoadRecipes extends Component {
+export default class LoadRecipes extends Component {
 
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired
-  }
-
-  componentDidMount() {
-    this.props.dispatch(fetchRecipes());
-  }
+  // static propTypes = {
+  //   dispatch: PropTypes.func.isRequired
+  // }
+  //
+  // componentDidMount() {
+  //   this.props.dispatch(fetchRecipes());
+  // }
 
   render() {
     return (
       <div className="recipes__container">
-        START!!
+        LOADED RECIPES IN THE BACKGROUND...
       </div>
     );
   }
@@ -37,4 +39,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(LoadRecipes);
+//export default connect(mapStateToProps)(LoadRecipes);

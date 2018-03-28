@@ -17,6 +17,7 @@ module.exports = {
     publicPath: '/'
   },
   devServer: {
+    historyApiFallback: true,
     proxy: {
       '/api/weggo': 'http://localhost:3000'
     }

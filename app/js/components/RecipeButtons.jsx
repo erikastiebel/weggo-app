@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getRandomRecipes} from '../actions/actions';
+import { getRandomRecipes } from '../actions/actions';
 import { NavLink } from 'react-router-dom';
 
 

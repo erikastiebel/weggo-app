@@ -80,7 +80,7 @@ export const getRandomRecipes = (state, numberOfRecipes, index = null) => {
 //funktion som slumpar fram ett indextal för att välja nytt recept.
 const randomNumber = (state) => {
   let randNum = Math.floor(Math.random() * state.recipesData.length);
-  console.log(randNum);
+//  console.log('randomNum: ', randNum,' receptlängd ', state.recipesData.length);
   while (checkSelecedRecipe(state, randNum)) {
     randNum = Math.floor(Math.random() * state.recipesData.length);
   }
@@ -89,7 +89,7 @@ const randomNumber = (state) => {
 
 // Funktion för att kontrollera att ett indexnummer inte motsvarar ett receptid som redan valts
 const checkSelecedRecipe = (state, num) => {
-  console.log('här vill vi titta: ', state.recipesData[num], usedRecipes);
+  //console.log('här vill vi titta: ', state.recipesData[num], usedRecipes);
   const recipe = state.recipesData[num];
   if (usedRecipes.indexOf(recipe.id) != -1) {
     return true;
@@ -114,3 +114,13 @@ export const loginUserWithEmailAndPassword = (state, email, password) => {
     })
   }
 }
+
+// export const  makeRecipesList = (recipeObject) => {
+//   const recipesList = [];
+//   for (const recipe in recipeObject) {
+//     if (recipeObject) {
+//       recipesList.push(recipeObject[recipe]);
+//     }
+//   }
+//   return recipesList;
+// }

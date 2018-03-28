@@ -1,6 +1,6 @@
 import { RECEIVE_USERINFO } from '../actions/actions';
 
-export default function reciveUserInfoReducer( state = {}, action ) {
+export default function reciveUserInfoReducer( state = [], action ) {
   switch (action.type) {
 
   case RECEIVE_USERINFO:

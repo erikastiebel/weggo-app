@@ -19,8 +19,8 @@ store.subscribe(() => {
 });
 
 render (
-<Provider store={store}>
-  <App />
-</Provider>,
-document.getElementById('app-container')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app-container')
 );
