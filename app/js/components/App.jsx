@@ -5,7 +5,11 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { fetchRecipes } from '../actions/actions';
 import RecipeButtons from './RecipeButtons';
 import Recipes from './Recipes';
+import Recipe from './Recipe';
 import Login from './Login';
+
+import style from '../../scss/style.scss';
+console.log(style);
 
 
 const Home = () => (
@@ -28,15 +32,16 @@ class App extends Component {
     return (
       <BrowserRouter>
           <div>
-              <header className="header">
-                  <nav className="header__nav">Navigation</nav>
-                  <div className="header__logo"><Link to="/">Weggo Logo</Link></div>
-                  <div className="header__login"><Link to="/login">Log In</Link></div>
+              <header className={style.header}>
+                  <nav className={style.header__nav}>Navigation</nav>
+                  <div className={style.header__logo}><Link to="/">Weggo Logo</Link></div>
+                  <div className={style.header__login}><Link to="/login">Log In</Link></div>
               </header>
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/recipes/:number" component={Recipes} />
-              <footer className="footer">Footer</footer>
+              <Route path="/recipe/:id" component={Recipe} />
+              <footer className={style.footer}>Footer</footer>
           </div>
       </BrowserRouter>
     );

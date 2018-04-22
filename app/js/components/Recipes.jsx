@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getRandomRecipes } from '../actions/actions';
-import { makeRecipesList } from './LoadRecipes';
+import { getRandomRecipes, makeRecipesList } from '../actions/actions';
+import { NavLink } from 'react-router-dom';
 
+import style from '../../scss/style.scss';
 
 class Recipes extends Component {
 
@@ -18,7 +19,7 @@ class Recipes extends Component {
       this.props.dispatch(getRandomRecipes(nextProps, this.props.match.params.number));
     }
   }
-  
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     recipesData: PropTypes.array.isRequired,
@@ -28,14 +29,14 @@ class Recipes extends Component {
   renderRecipes() {
     if (this.props.recipesData !== 'undefined') {
       return this.props.recipesList.map(function(recipe, index) {
-        return <li key={index}>{recipe.title}</li>;
+        return <li key={index}><NavLink to={'/recipe/'+recipe.id}>{recipe.title}</NavLink></li>;
       });
     }
   }
 
   render() {
     return (
-      <div className="recipes__container">
+      <div className={style.recipes__container}>
         <ul>
           {this.renderRecipes()}
         </ul>

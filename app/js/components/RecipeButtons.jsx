@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getRandomRecipes } from '../actions/actions';
 import { NavLink } from 'react-router-dom';
 
+import style from '../../scss/style.scss';
+
 
 class RecipeButtons extends Component {
 
@@ -14,11 +16,11 @@ class RecipeButtons extends Component {
 
   render() {
     return (
-      <div className="button__container">
-        <div className="button__item-wrapper">
-          <NavLink className="button__item" to="/recipes/3">3</NavLink>
-          <NavLink className="button__item" to="/recipes/5">5</NavLink>
-          <NavLink className="button__item" to="/recipes/6">6</NavLink>
+      <div className={style.button__container}>
+        <div className={style.button__item_wrapper}>
+          <NavLink className={style.button__item} to="/recipes/3">3</NavLink>
+          <NavLink className={style.button__item} to="/recipes/5">5</NavLink>
+          <NavLink className={style.button__item} to="/recipes/6">6</NavLink>
         </div>
       </div>
     );

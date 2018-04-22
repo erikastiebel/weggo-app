@@ -11,6 +11,7 @@ ul {
 a {
   text-decoration: none;
   color: $black;
+  cursor: pointer;
 
   &:hover{
     color: lighten($black, 30%);

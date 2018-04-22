@@ -99,7 +99,6 @@ const checkSelecedRecipe = (state, num) => {
   }
 }
 
-
 export const loginUserWithEmailAndPassword = (state, email, password) => {
   return dispatch => {
     const urlWithParams = loginUserEndpoint + '?username='+ encodeURIComponent(email) +'&password='+ encodeURIComponent(password);
@@ -115,12 +114,12 @@ export const loginUserWithEmailAndPassword = (state, email, password) => {
   }
 }
 
-// export const  makeRecipesList = (recipeObject) => {
-//   const recipesList = [];
-//   for (const recipe in recipeObject) {
-//     if (recipeObject) {
-//       recipesList.push(recipeObject[recipe]);
-//     }
-//   }
-//   return recipesList;
-// }
+export const  makeRecipesList = (recipeObject) => {
+  const recipesList = [];
+  for (const recipe in recipeObject) {
+    if (recipeObject) {
+      recipesList.push(recipeObject[recipe]);
+    }
+  }
+  return recipesList;
+}

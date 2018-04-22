@@ -48,7 +48,18 @@ module.exports = {
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'sass-loader']
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 2,
+              localIdentName: '[name]__[local]__[hash:base64:5]'
+            }
+          },
+        'sass-loader'
+        ]
       })
     },
     {
@@ -60,7 +71,7 @@ module.exports = {
     }]
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin({filename:'style.css', allChunks: true}),
     new HtmlWebpackPlugin({
       template: 'index.html',
       inject: 'body',
