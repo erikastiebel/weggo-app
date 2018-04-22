@@ -1,9 +1,11 @@
 export const RECEIVE_RECIPES = 'RECEIVE_RECIPES';
+export const RECEIVE_RECIPE = 'RECEIVE_RECIPE';
 export const RANDOM_RECIPES = 'RANDOM_RECIPES';
 export const RECEIVE_USERINFO = 'RECEIVE_USERINFO';
 
 //May be moved to config file
-const recipesEndpoint = '/api/weggo/recipies';
+const recipesEndpoint = '/api/weggo/recipes/';
+const recipeEndpoint = '/api/weggo/recipe';
 const loginUserEndpoint = '/api/weggo/user/loginuser';
 
 function reciveUserInfo(data) {
@@ -20,6 +22,13 @@ function receiveRecipes(data) {
   }
 }
 
+function receiveRecipe(data) {
+  return {
+    type: RECEIVE_RECIPE,
+    recipeData: data
+  }
+}
+
 function randomRecipes(data) {
   return {
     type: RANDOM_RECIPES,
@@ -27,7 +36,21 @@ function randomRecipes(data) {
   }
 }
 
-//Feching recipes from the Carrot API
+//Fetching a specific recipe from Carrot API based on ID
+
+export function fetchRecipeByID( recipeID, state) {
+  return dispatch => {
+    return fetch(recipeEndpoint + '/' + recipeID)
+    .then((res) => res.json(),
+    (error) => console.log('An error occurred.', error))
+    .then(data => {
+      //add recipeObject to state
+      dispatch(receiveRecipe(data));
+    })
+  }
+}
+
+//Fetching recipes from the Carrot API
 export function fetchRecipes() {
   return dispatch => {
     return fetch(recipesEndpoint)

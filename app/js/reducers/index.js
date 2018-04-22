@@ -8,7 +8,6 @@ const rootReducer = combineReducers({
   recipesData,
   randomRecipesData,
   userInfoData
-
 });
 
 export default rootReducer;
