@@ -3,49 +3,52 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchRecipeByID } from '../actions/actions';
 
-
 import style from '../../scss/style.scss';
 
-const getRecipe = (recipeID, ) => {
 
-}
-
-
-class Recipe extends Component {
+class RecipeContainer extends Component {
 
   componentDidMount() {
     if (this.props.recipesData.length > 0) {
       const recipeIdInURL = this.props.match.params.id;
 
-      const theRecipe =  this.props.recipesData.find(function (recipe) {
+      this.recipe =  this.props.recipesData.find(function (recipe) {
           return recipe.id == recipeIdInURL;
       });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-
     if (nextProps.recipesData.length > 0 && this.props.recipesData !== nextProps.recipesData) {
       const recipeIdInURL = this.props.match.params.id;
-      const theRecipe =  nextProps.recipesData.find(function (recipe) {
+      this.recipe =  nextProps.recipesData.find(function (recipe) {
           return recipe.id == recipeIdInURL;
       });
-      if (theRecipe == undefined) {
+      console.log('recipe ', this.recipe);
+      if (this.recipe == undefined) {
         this.props.dispatch(fetchRecipeByID(recipeIdInURL, this.state));
-    }
+      }
     }
   }
+
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    recipesData: PropTypes.array.isRequired
+    recipesData: PropTypes.array.isRequired,
+    recipe: PropTypes.object
   }
 
-
   render() {
+
+    let recipeObject = '';
+
+    if(typeof this.recipe != 'undefined') {
+      recipeObject = this.recipe.title;
+    }
+
     return (
       <div>
-        ETT RECEPT!!!!!
+        { recipeObject }
       </div>
     );
   }
@@ -58,4 +61,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Recipe);
+export default connect(mapStateToProps)(RecipeContainer);

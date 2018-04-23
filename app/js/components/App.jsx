@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { fetchRecipes } from '../actions/actions';
 import RecipeButtons from './RecipeButtons';
 import Recipes from './Recipes';
-import Recipe from './Recipe';
+import RecipeContainer from './RecipeContainer';
 import Login from './Login';
 
 import style from '../../scss/style.scss';
@@ -40,7 +40,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/recipes/:number" component={Recipes} />
-              <Route path="/recipe/:id" component={Recipe} />
+              <Route path="/recipe/:id" component={RecipeContainer} />
               <footer className={style.footer}>Footer</footer>
           </div>
       </BrowserRouter>
