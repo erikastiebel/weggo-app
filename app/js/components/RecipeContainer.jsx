@@ -8,7 +8,7 @@ import style from '../../scss/style.scss';
 
 class RecipeContainer extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.recipesData.length > 0) {
       const recipeIdInURL = this.props.match.params.id;
 
@@ -18,13 +18,13 @@ class RecipeContainer extends Component {
     }
   }
 
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.recipesData.length > 0 && this.props.recipesData !== nextProps.recipesData) {
       const recipeIdInURL = this.props.match.params.id;
       this.recipe =  nextProps.recipesData.find(function (recipe) {
           return recipe.id == recipeIdInURL;
       });
-      console.log('recipe ', this.recipe);
       if (this.recipe == undefined) {
         this.props.dispatch(fetchRecipeByID(recipeIdInURL, this.state));
       }
@@ -41,13 +41,12 @@ class RecipeContainer extends Component {
   render() {
 
     let recipeObject = '';
-
     if(typeof this.recipe != 'undefined') {
-      recipeObject = this.recipe.title;
+      recipeObject = this.recipe.title
     }
 
     return (
-      <div>
+      <div id="recipeObjectContainer">
         { recipeObject }
       </div>
     );
