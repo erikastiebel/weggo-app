@@ -2,17 +2,40 @@
 .button__container {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  text-align: center;
+  flex-direction: column;
+  }
+.text__container {
+  display: flex;
 }
-
+.welcometext {
+  display: block;
+}
 .button__item_wrapper {
-  width: 400px;
   display: flex;
   justify-content: space-around;
 }
+.randomLink {
+  text-decoration: none;
+  border:0;
+}
+
 
 .button__item {
-  background: transparent;
-  border: solid 1px $black;
-  padding: 5px 30px;
+  background-color: #E68E3D;
+  max-width: 180px;
+  width:120px;
+  height: 30px;
+  border-radius: 20px;
+  height: 30px;
+  text-align: center;
+  vertical-align: center;
+  margin-top: 50px;
+  margin-left: 50px;
+  color: $white;
+  border:0;
+}
+.welcometext{
+  font-size: 24px;
+
 }
