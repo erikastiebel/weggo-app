@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { fetchRecipes } from '../actions/actions';
+import Header from './Header/Header';
 import RecipeButtons from './RecipeButtons/RecipeButtons';
 import Recipes from './Recipes';
 import RecipeContainer from './RecipeContainer';
@@ -32,11 +33,7 @@ class App extends Component {
     return (
       <BrowserRouter>
           <div>
-              <header className={style.header}>
-                  <nav className={style.header__nav}>Navigation</nav>
-                  <div className={style.header__logo}><Link to="/">Weggo Logo</Link></div>
-                  <div className={style.header__login}><Link to="/login">Log In</Link></div>
-              </header>
+              <Header ></Header>
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/recipes/:number" component={Recipes} />
