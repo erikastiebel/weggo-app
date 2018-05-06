@@ -17,10 +17,15 @@ class RecipeButtons extends Component {
   render() {
     return (
       <div className={style.button__container}>
+        <div className={style.text__container}>
+          <span className={style.welcometext}>
+            Skapa en mer vegetarisk vardag!Slumpa fram enkla och goda vegetariska recept!
+            </span>
+          </div>
         <div className={style.button__item_wrapper}>
-          <NavLink className={style.button__item} to="/recipes/3">3</NavLink>
-          <NavLink className={style.button__item} to="/recipes/5">5</NavLink>
-          <NavLink className={style.button__item} to="/recipes/6">6</NavLink>
+          <NavLink className={style.randomLink} to="/recipes/3"><button className={style.button__item}>3 recept</button></NavLink>
+          <NavLink className={style.randomLink} to="/recipes/5"><button className={style.button__item}>5 recept</button></NavLink>
+          <NavLink className={style.randomLink} to="/recipes/7"><button className={style.button__item}>7 recept</button></NavLink>
         </div>
       </div>
     );
