@@ -1,7 +1,9 @@
 import React from 'react';
 import  PropTypes from 'prop-types';
 import style from './RecipeImages.scss';
-const assetURL = "../../../app/assets/";
+
+const assetURL = '../../../app/assets/';
+
 const RecipeImages = props => (
 
   <div className={style.imageContainer}>

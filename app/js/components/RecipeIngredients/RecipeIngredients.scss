@@ -1,7 +1,15 @@
-@import "../../../scss/style.scss";
-.ingredient__list {
-  font-size: 12px;
+@import "../../../scss/variables.scss";
+
+.ingredient_heading {
+  color: $darkgreen;
+  font-size: 1.8em;
+  font-weight: 900;
 }
 
-.ingredient__wrapper {
+.ingredient__list {
+  font-size: 1.2em;
+
+  li {
+    margin-bottom: 10px;
+  }
 }

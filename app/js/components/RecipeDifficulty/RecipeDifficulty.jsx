@@ -4,7 +4,7 @@ import style from './RecipeDifficulty.scss';
 
 
 const RecipeDifficulty = props => (
-  <div className="">
+  <div className={style.recipe__difficulty}>
     { props.cookingdifficulty }
   </div>
 );

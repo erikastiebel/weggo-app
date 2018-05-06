@@ -1,6 +1,10 @@
-@import "../../../scss/style.scss";
+@import "../../../scss/variables.scss";
 
 .imageContainer{
   max-height: 400px;
   overflow: hidden;
+}
+
+img {
+  width: 100%;
 }

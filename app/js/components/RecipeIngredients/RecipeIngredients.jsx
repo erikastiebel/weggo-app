@@ -19,7 +19,7 @@ const renderList = (ingredientsArray) => {
 
 const RecipeIngredients = props => (
   <div className={style.ingredient__wrapper}>
-    <h3>Ingredienser:</h3>
+    <h2 className={style.ingredient_heading}>Ingredienser</h2>
     <ul className={style.ingredient__list}>
       { renderList(recipeIngredientList(props.ingredients)) }
     </ul>

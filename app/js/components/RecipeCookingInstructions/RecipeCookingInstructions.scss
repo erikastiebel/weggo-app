@@ -1,5 +1,20 @@
-@import "../../../scss/style.scss";
+@import "../../../scss/variables.scss";
 
 .instructions__container {
   width: 60%;
+}
+
+.instructions_heading {
+  color: $darkgreen;
+  font-size: 1.8em;
+  font-weight: 900;
+}
+
+.instructions__list {
+  font-size: 1.2em;
+}
+
+.instructions__list_item {
+  margin-bottom: 10px;
+  padding-left: 7px;
 }

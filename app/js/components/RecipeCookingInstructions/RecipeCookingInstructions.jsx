@@ -14,16 +14,16 @@ const cookingInstructionsList = (cookingInstructionsObject) => {
 
 const renderList = (cookingInstructionsArray) => {
   return cookingInstructionsArray.map((cookingInstruction, index) => {
-    return <li className="" key={index}>{index + 1} {cookingInstruction}</li>;
+    return <li className={style.instructions__list_item} key={index}> {cookingInstruction}</li>;
   });
 }
 
 const RecipeCookingInstructions = props => (
   <div className={style.instructions__container}>
-    <h3>Gör så här:</h3>
-    <ul>
+    <h2 className={style.instructions_heading}>Gör så här</h2>
+    <ol className={style.instructions__list}>
       { renderList(cookingInstructionsList(props.instructions)) }
-    </ul>
+    </ol>
   </div>
 );
 

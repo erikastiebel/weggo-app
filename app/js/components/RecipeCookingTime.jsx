@@ -15,7 +15,7 @@ const displayCookingTime = (cookingTimeObject) => {
 }
 
 const RecipeCookingTime = props => (
-  <div className={style.recipe__cookingtime}>
+  <div className="">
     { displayCookingTime(props.cookingtime) }
   </div>
 );

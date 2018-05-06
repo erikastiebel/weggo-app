@@ -8,7 +8,6 @@ import RecipeImages from './RecipeImages/RecipeImages';
 import RecipeCookingTime from './RecipeCookingTime/RecipeCookingTime';
 import RecipeDifficulty from './RecipeDifficulty/RecipeDifficulty';
 
-import style from '../../scss/style.scss';
 import containerStyle from './RecipeContainer.scss';
 
 class RecipeContainer extends Component {
@@ -77,13 +76,17 @@ class RecipeContainer extends Component {
 
     return (
       <div className={containerStyle.container__wrapper}>
-        <h2 className={containerStyle.recipe__title}>{ recipeObject.title } </h2>
-        <h4 className={containerStyle.recipe__summary}>{ recipeObject.summary }</h4>
-        <div>{ images }</div>
+        <div className={containerStyle.recipe__hero}>
+          <div className={containerStyle.recipe__title_wrapper}>
+            <h1 className={containerStyle.recipe__title}>{ recipeObject.title } </h1>
+            <p className={containerStyle.recipe__summary}>{ recipeObject.summary }</p>
+          </div>
+          <div>{ images }</div>
+        </div>
         <div className={containerStyle.recipe__wrapper}>
           <div className={containerStyle.recipe__complexity__container} >
-            <div className={containerStyle.recipe__cookingtime}> { cookingTime } </div>
-            <div className={containerStyle.recipe__difficulty}> { cookingDifficulty } </div>
+            <div> { cookingTime } </div>
+            <div> { cookingDifficulty } </div>
           </div>
           <div className={containerStyle.recipe__information__container}>
             <div className={containerStyle.ingredient__container}>{ ingredients }</div>

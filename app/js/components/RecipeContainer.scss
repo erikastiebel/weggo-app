@@ -1,16 +1,24 @@
-@import "../../scss/style.scss";
+@import "../../scss/variables.scss";
+
 .container__wrapper {
   display: flex;
   flex-direction: column;
 }
+.recipe__hero {
+  position: relative;
+}
 .recipe__wrapper {
   display: flex;
   flex-direction: column;
-  padding:50px;
+  padding: 50px;
+  box-shadow: inset 0px 10px 15px -5px rgba(0, 0, 0, 0.6)
 }
 .recipe__complexity__container {
   display: flex;
   flex-direction: row;
+  padding: 20px 0;
+  font-size: 18px;
+  color: $darkgray;
 }
 
 .recipe__information__container {
@@ -24,14 +32,20 @@
   width: 70%;
 }
 
-.recipe__summary {
+.recipe__title_wrapper {
   position: absolute;
-  top: 270px;
+  bottom: 50px;
   left: 50px;
+  width: 80%;
 }
-
 .recipe__title {
-  position: absolute;
-  top: 240px;
-  left: 50px;
+  font-size: 3.3em;
+  color: $white;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 1);
+  margin: 20px 0;
+}
+.recipe__summary {
+  font-size: 1.4em;
+  color: $white;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 1);
 }
