@@ -1,0 +1,66 @@
+@import "../../../scss/variables.scss";
+
+.recipe__card__wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  margin-top:20px;
+  width:100%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.2);
+}
+.recipe__card__image__wrapper {
+  width: 30%;
+  display: flex;
+}
+.recipe__card__image {
+  //max-height: 200px;
+  height: auto;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px;
+  max-height: 200px;
+  overflow-y: hidden;
+}
+.recipe__card__infocontainer {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  padding-left: 5%;
+}
+.recipe__complexity__container {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+.title {
+font-size: 24px;
+
+}
+.recipe__card__button {
+  background-color: #E68E3D;
+  max-width: 180px;
+  border-radius: 20px;
+  height: 30px;
+  text-align: center;
+  vertical-align: center;
+  margin-top: 50px;
+  margin-left: 50px
+}
+
+span.recipe__card__button__text {
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+}
+
+.cookingDifficulty {
+  margin-left: 5%;
+}
