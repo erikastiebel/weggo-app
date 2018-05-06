@@ -9,9 +9,11 @@ import style from './Header.scss';
 
 const Header = props => (
   <header className={style.header}>
-    <nav className={style.header__nav}>Navigation</nav>
-    <div className={style.header__logo}><Link to="/"><img className={style.header__logo__svg} src="../../../app/assets/images/weggo_logo.svg" alt="Weggo" /></Link></div>
-    <div className={style.header__login}><Link to="/login">Log In</Link></div>
+    <div className={style.header__inner_wrapper}>
+      <nav className={style.header__nav}>Navigation</nav>
+      <div className={style.header__logo}><Link to="/"><img className={style.header__logo__svg} src="../../../app/assets/images/weggo_logo.svg" alt="Weggo" /></Link></div>
+      <div className={style.header__login}><Link to="/login">Log In</Link></div>
+    </div>
   </header>
 );
 Header.propTypes = {
