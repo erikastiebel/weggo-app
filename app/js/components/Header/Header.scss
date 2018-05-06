@@ -1,0 +1,23 @@
+@import "../../../scss/variables.scss";
+
+.header {
+  background: $grey;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.header__nav {
+
+}
+
+.header__logo {
+ color: $darkgreen;
+}
+
+.header__login {
+
+}
