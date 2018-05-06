@@ -18,7 +18,7 @@ const RecipeCard = props => (
         <div className={style.cookingTime}><CookingTime cookingtime={props.cookingTime} ></CookingTime></div>
         <div className={style.cookingDifficulty}><CookingDifficulty cookingdifficulty={props.difficulty} ></CookingDifficulty></div>
       </div>
-      <div className={style.recipe__card__button}><span className={style.recipe__card__button__text}>Byt recept</span></div>
+      <button className={style.recipe__card__button}>Byt recept</button>
     </div>
   </div>
 );
