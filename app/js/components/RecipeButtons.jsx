@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getRandomRecipes } from '../actions/actions';
 import { NavLink } from 'react-router-dom';
 
-import style from '../../scss/style.scss';
+import style from './recipebuttonsstyle.scss';
 
 
 class RecipeButtons extends Component {
