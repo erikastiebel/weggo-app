@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getRandomRecipes } from '../actions/actions';
+import { getRandomRecipes } from '../../actions/actions';
 import { NavLink } from 'react-router-dom';
 
-import style from './recipebuttonsstyle.scss';
+import style from './RecipeButtons.scss';
 
 
 class RecipeButtons extends Component {

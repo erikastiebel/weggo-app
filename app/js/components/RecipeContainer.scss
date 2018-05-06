@@ -1,0 +1,37 @@
+@import "../../scss/style.scss";
+.container__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.recipe__wrapper {
+  display: flex;
+  flex-direction: column;
+  padding:50px;
+}
+.recipe__complexity__container {
+  display: flex;
+  flex-direction: row;
+}
+
+.recipe__information__container {
+  display: flex;
+  flex-direction: row;
+}
+.ingredient__container {
+  width: 30%;
+}
+.instructions__container {
+  width: 70%;
+}
+
+.recipe__summary {
+  position: absolute;
+  top: 270px;
+  left: 50px;
+}
+
+.recipe__title {
+  position: absolute;
+  top: 240px;
+  left: 50px;
+}

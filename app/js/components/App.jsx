@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { fetchRecipes } from '../actions/actions';
-import RecipeButtons from './RecipeButtons';
+import RecipeButtons from './RecipeButtons/RecipeButtons';
 import Recipes from './Recipes';
 import RecipeContainer from './RecipeContainer';
 import Login from './Login';

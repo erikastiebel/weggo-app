@@ -1,10 +1,11 @@
 import React from 'react';
 import  PropTypes from 'prop-types';
-
-
+import style from './RecipeImages.scss';
+const assetURL = "../../../app/assets/";
 const RecipeImages = props => (
-  <div className="">
-      <p>Bild... { props.images.full}</p>
+
+  <div className={style.imageContainer}>
+      <img src={assetURL + props.images.full} alt="{props.images.full}" />
   </div>
 );
 

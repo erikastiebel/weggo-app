@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchRecipeByID } from '../actions/actions';
-import RecipeIngredients from './RecipeIngredients';
-import RecipeCookingInstructions from './RecipeCookingInstructions';
-import RecipeImages from './RecipeImages';
-import RecipeCookingTime from './RecipeCookingTime';
+import RecipeIngredients from './RecipeIngredients/RecipeIngredients';
+import RecipeCookingInstructions from './RecipeCookingInstructions/RecipeCookingInstructions';
+import RecipeImages from './RecipeImages/RecipeImages';
+import RecipeCookingTime from './RecipeCookingTime/RecipeCookingTime';
+import RecipeDifficulty from './RecipeDifficulty/RecipeDifficulty';
 
 import style from '../../scss/style.scss';
-
+import containerStyle from './RecipeContainer.scss';
 
 class RecipeContainer extends Component {
 
@@ -46,7 +47,9 @@ class RecipeContainer extends Component {
         ingredients,
         instructions,
         images,
-        cookingTime;
+        cookingTime,
+        cookingDifficulty;
+
     if(typeof this.recipe != 'undefined') {
       recipeObject = this.recipe;
 
@@ -66,19 +69,27 @@ class RecipeContainer extends Component {
         key={recipeObject.id}
         cookingtime={recipeObject.cookingtime}
       />
+      cookingDifficulty = <RecipeDifficulty
+        key={recipeObject.id}
+        cookingdifficulty={recipeObject.difficulty}
+      />
     }
 
     return (
-      <div id="recipeObjectContainer">
-        <h2>{ recipeObject.title } </h2>
+      <div className={containerStyle.container__wrapper}>
+        <h2 className={containerStyle.recipe__title}>{ recipeObject.title } </h2>
+        <h4 className={containerStyle.recipe__summary}>{ recipeObject.summary }</h4>
         <div>{ images }</div>
-        <div> { cookingTime } </div>
-        <h4>{ recipeObject.summary }</h4>
-        <div>Ingredienser:</div>
-        <div>{ ingredients }</div>
-        <hr/>
-        <div>Instruktioner:</div>
-        <div>{ instructions }</div>
+        <div className={containerStyle.recipe__wrapper}>
+          <div className={containerStyle.recipe__complexity__container} >
+            <div className={containerStyle.recipe__cookingtime}> { cookingTime } </div>
+            <div className={containerStyle.recipe__difficulty}> { cookingDifficulty } </div>
+          </div>
+          <div className={containerStyle.recipe__information__container}>
+            <div className={containerStyle.ingredient__container}>{ ingredients }</div>
+            <div className={containerStyle.instructions__container}>{ instructions }</div>
+          </div>
+        </div>
       </div>
     );
   }

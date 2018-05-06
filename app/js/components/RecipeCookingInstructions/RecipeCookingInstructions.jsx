@@ -1,6 +1,8 @@
 import React from 'react';
 import  PropTypes from 'prop-types';
 
+import style from './RecipeCookingInstructions.scss';
+
 const cookingInstructionsList = (cookingInstructionsObject) => {
   const cookingInstructionsArray = [];
   for (const cookingInstruction in cookingInstructionsObject ) {
@@ -17,7 +19,8 @@ const renderList = (cookingInstructionsArray) => {
 }
 
 const RecipeCookingInstructions = props => (
-  <div className="">
+  <div className={style.instructions__container}>
+    <h3>Gör så här:</h3>
     <ul>
       { renderList(cookingInstructionsList(props.instructions)) }
     </ul>
