@@ -1,1 +1,7 @@
-import style from '../../scss/style.scss';
+@import "../../scss/variables.scss";
+
+.recipes__container {
+  padding: 20px;
+  background-color: #E9E9E9;
+
+}
