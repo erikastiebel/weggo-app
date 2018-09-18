@@ -1,5 +1,5 @@
 import React from 'react';
-import  PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import style from './RecipeCard.scss';
 const assetURL = '../../../app/assets/';
 import CookingTime from '../RecipeCookingTime/RecipeCookingTime';

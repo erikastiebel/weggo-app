@@ -1,19 +1,23 @@
 @import "../../../scss/variables.scss";
 .button__container {
   display: flex;
-  justify-content: center;
-  text-align: center;
   flex-direction: column;
-  }
+  padding: 120px 50px 40px;
+}
+
 .text__container {
   display: flex;
+  justify-content: center;
+    margin-top: 50px;
 }
 .welcometext {
   display: block;
+  text-align: center;
 }
 .button__item_wrapper {
   display: flex;
   justify-content: space-around;
+  margin-top: 100px;
 }
 .randomLink {
   text-decoration: none;
@@ -23,17 +27,12 @@
 
 .button__item {
   background-color: #E68E3D;
-  max-width: 180px;
-  width:120px;
-  height: 30px;
-  border-radius: 20px;
-  height: 30px;
+  border-radius: 40px;
   text-align: center;
-  vertical-align: center;
-  margin-top: 50px;
-  margin-left: 50px;
   color: $white;
   border:0;
+  padding: 10px 40px;
+  cursor: pointer;
 }
 .welcometext{
   font-size: 24px;

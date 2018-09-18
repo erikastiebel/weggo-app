@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, bindActionCreators } from 'react-redux';
 import RecipeCard from './RecipeCard/RecipeCard';
 import { getRandomRecipes, makeRecipesList } from '../actions/actions';
 import { NavLink } from 'react-router-dom';
@@ -27,7 +27,9 @@ class Recipes extends Component {
     recipesList: PropTypes.array.isRequired
   }
 
+
   renderRecipes() {
+
     if (this.props.recipesData !== 'undefined') {
       return this.props.recipesList.map(function(recipe, index) {
         return <div key={index} id={index}><NavLink key={index} to={'/recipe/'+recipe.id}><RecipeCard key={index} title={recipe.title} summary={recipe.summary} images={recipe.images} cookingTime={recipe.cookingtime} difficulty={recipe.difficulty} ></RecipeCard></NavLink></div>;
@@ -36,6 +38,8 @@ class Recipes extends Component {
   }
 
   render() {
+
+
     return (
       <div className={style.recipes__container}>
         <ul>

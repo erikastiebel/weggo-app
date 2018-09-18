@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getRandomRecipes } from '../../actions/actions';
 import { NavLink } from 'react-router-dom';
 
 import style from './RecipeButtons.scss';
@@ -18,9 +17,9 @@ class RecipeButtons extends Component {
     return (
       <div className={style.button__container}>
         <div className={style.text__container}>
-          <span className={style.welcometext}>
-            Skapa en mer vegetarisk vardag!Slumpa fram enkla och goda vegetariska recept!
-            </span>
+          <h1 className={style.welcometext}>
+            Skapa en mer vegetarisk vardag!<br/>Slumpa fram enkla och goda vegetariska recept!
+            </h1>
           </div>
         <div className={style.button__item_wrapper}>
           <NavLink className={style.randomLink} to="/recipes/3"><button className={style.button__item}>3 recept</button></NavLink>
