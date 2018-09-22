@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import '../scss/style.scss';
 
 import rootReducer from './reducers/index';
-import App from './components/App';
+import App from './containers/App';
 
 const store = createStore(
   rootReducer,
@@ -24,3 +24,5 @@ render (
   </Provider>,
   document.getElementById('app-container')
 );
+
+export default store;

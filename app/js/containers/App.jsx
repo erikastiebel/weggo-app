@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { fetchRecipes } from '../actions/actions';
-import Header from './Header/Header';
-import RecipeButtons from './RecipeButtons/RecipeButtons';
-import Recipes from './Recipes';
-import RecipeContainer from './RecipeContainer';
-import Login from './Login';
+import Header from '../components/Header/Header';
+import RecipeButtons from '../components/RecipeButtons/RecipeButtons';
+import Recipes from '../components/Recipes';
+import RecipeContainer from './RecipeContainer/RecipeContainer';
+import Login from '../components/Login';
 
 import style from '../../scss/style.scss';
-console.log(style);
 
 
 const Home = () => (
@@ -18,6 +17,7 @@ const Home = () => (
       <RecipeButtons />
   </main>
 );
+
 
 class App extends Component {
 

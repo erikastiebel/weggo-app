@@ -1,9 +1,13 @@
-import { RECEIVE_USERINFO } from '../actions/actions';
+import {
+  LOGIN_USER,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAILURE
+} from '../actions/actions';
 
-export default function reciveUserInfoReducer( state = [], action ) {
+export default function loginUserReducer( state = [], action ) {
   switch (action.type) {
 
-  case RECEIVE_USERINFO:
+  case LOGIN_USER:
     return action.userInfoData;
 
   default:
