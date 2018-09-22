@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import RecipeCard from './RecipeCard/RecipeCard';
-import { getRandomRecipes, makeRecipesList } from '../actions/actions';
-import { NavLink } from 'react-router-dom';
+import { getRandomRecipes, getNewRecipe } from '../actions/actions';
 
 import style from './recipes.scss';
 
@@ -27,22 +27,25 @@ class Recipes extends Component {
     recipesList: PropTypes.array.isRequired
   }
 
-
   renderRecipes() {
+    const { dispatch } = this.props;
+    const switchRecipe = bindActionCreators(getNewRecipe, dispatch);
+
     if (this.props.recipesData !== 'undefined') {
       return this.props.recipesList.map(function(recipe, index) {
         return (
           <div key={index} id={index}>
-            <NavLink key={index} to={'/recipe/'+recipe.id}>
               <RecipeCard
                 key={index}
+                id={recipe.id}
+                index={index}
+                switchRecipe={switchRecipe}
                 title={recipe.title}
                 summary={recipe.summary}
                 images={recipe.images}
                 cookingTime={recipe.cookingtime}
                 difficulty={recipe.difficulty}
-              ></RecipeCard>
-            </NavLink>
+              />
           </div>
         );
       });
