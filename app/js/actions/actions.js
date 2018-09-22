@@ -1,6 +1,7 @@
 import * as carrotApi from '../api/carrotApi';
 import * as random from '../utils/randomRecipes';
 
+
 /*
 // RECEIVE RECIPES
 */
@@ -40,10 +41,10 @@ export function fetchRecipes() {
   };
 };
 
+
 /*
 // RANDOM RECIPES
 */
-
 export const RANDOM_RECIPES = 'RANDOM_RECIPES';
 export const RANDOM_RECIPES_SUCCESS = 'RANDOM_RECIPES_SUCCESS';
 export const RANDOM_RECIPES_FAILURE = 'RANDOM_RECIPES_FAILURE';
@@ -83,10 +84,10 @@ export const getRandomRecipes = (numberOfRecipes, index = null) => {
   }
 }
 
+
 /*
 // SWITCH RECIPE
 */
-
 export const SWITCH_RECIPE = 'SWITCH_RECIPE';
 export const SWITCH_RECIPE_SUCCESS = 'SWITCH_RECIPE_SUCCESS';
 export const SWITCH_RECIPE_FAILURE = 'SWITCH_RECIPE_FAILURE';
@@ -94,24 +95,43 @@ export const SWITCH_RECIPE_FAILURE = 'SWITCH_RECIPE_FAILURE';
 function switchRecipe(recipe) {
   return {
     type: SWITCH_RECIPE,
-    recipe: recipe
+    updatedRecipes: recipe
   }
 }
 
 function switchRecipeSuccess(recipe) {
   return {
     type: SWITCH_RECIPE_SUCCESS,
-    recipe: recipe
+    updatedRecipes: recipe
   }
 }
 
 function switchRecipeFailure(error) {
   return {
     type: SWITCH_RECIPE,
-    recipe: error
+    updatedRecipes: error
   }
 }
 
+export const getNewRecipe = (index) => {
+  return dispatch => {
+    let updatedRecipe = random.randomRecipes(1, index);
+    if(updatedRecipe.visibleRecipes !== null && updatedRecipe.visibleRecipes.length > 0){
+      dispatch(switchRecipeSuccess({
+        usedRecipes: updatedRecipe.usedRecipes,
+        visibleRecipes: updatedRecipe.visibleRecipes
+      }));
+    }
+    else {
+      dispatch(switchRecipeFailure(updatedRecipe));
+    }
+  }
+}
+
+
+/*
+// SEARCH RECIPES
+*/
 export const SEARCH_RECIPES = 'SEARCH_RECIPES';
 export const SEARCH_RECIPES_SUCCESS = 'SEARCH_RECIPES_SUCCESS';
 export const SEARCH_RECIPES_FAILURE = 'SEARCH_RECIPES_FAILURE';
@@ -136,6 +156,7 @@ function searchRecipesFailure(error) {
     recipes: error
   }
 }
+
 
 /*
 // GET USER
