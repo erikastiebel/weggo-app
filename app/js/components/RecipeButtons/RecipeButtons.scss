@@ -26,13 +26,17 @@
 
 
 .button__item {
-  background-color: #E68E3D;
+  background: linear-gradient(to bottom right, #53ab3c, #b5ef2b);
+// background: linear-gradient(217deg, rgba(158, 255, 0, 1), rgba(255,0,0,0) 70.71%),
+//             linear-gradient(127deg, rgba(7, 173, 7, 1), rgba(0,255,0,0) 70.71%),
+//             linear-gradient(336deg, rgba(23, 187, 8, 1), rgba(0,0,255,0) 70.71%);
+  border: 0;
   border-radius: 40px;
-  text-align: center;
-  color: $white;
-  border:0;
-  padding: 10px 40px;
+  color: #fff;
   cursor: pointer;
+  font-size: 1.2em;
+  padding: 20px 56px;
+  text-align: center;
 }
 .welcometext{
   font-size: 24px;

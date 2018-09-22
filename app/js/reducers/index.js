@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
-import recipesData from './recipes';
-import randomRecipesData from './randomRecipes';
-import userInfoData from './login';
+import recipesDB from './recipes';
+import randomRecipes from './randomRecipes';
+import userData from './login';
 
 
 const rootReducer = combineReducers({
-  recipesData,
-  randomRecipesData,
-  userInfoData
+  recipesDB,
+  randomRecipes,
+  userData
 });
 
 export default rootReducer;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchRecipeByID } from '../actions/actions';
-import RecipeIngredients from './RecipeIngredients/RecipeIngredients';
-import RecipeCookingInstructions from './RecipeCookingInstructions/RecipeCookingInstructions';
-import RecipeImages from './RecipeImages/RecipeImages';
-import RecipeCookingTime from './RecipeCookingTime/RecipeCookingTime';
-import RecipeDifficulty from './RecipeDifficulty/RecipeDifficulty';
+import { fetchRecipeByID } from '../../actions/actions';
+import RecipeIngredients from '../../components/RecipeIngredients/RecipeIngredients';
+import RecipeCookingInstructions from '../../components/RecipeCookingInstructions/RecipeCookingInstructions';
+import RecipeImages from '../../components/RecipeImages/RecipeImages';
+import RecipeCookingTime from '../../components/RecipeCookingTime/RecipeCookingTime';
+import RecipeDifficulty from '../../components/RecipeDifficulty/RecipeDifficulty';
 
 import containerStyle from './RecipeContainer.scss';
 
@@ -49,7 +49,7 @@ class RecipeContainer extends Component {
         cookingTime,
         cookingDifficulty;
 
-    if(typeof this.recipe != 'undefined') {
+    if(typeof this.recipe !== 'undefined') {
       recipeObject = this.recipe;
 
       ingredients = <RecipeIngredients
@@ -101,7 +101,7 @@ class RecipeContainer extends Component {
 function mapStateToProps(state) {
   return {
     state: state,
-    recipesData: state.recipesData
+    recipesData: state.recipesDB.recipes
   };
 }
 

@@ -1,126 +1,199 @@
+import * as carrotApi from '../api/carrotApi';
+import * as random from '../utils/randomRecipes';
+
+/*
+// RECEIVE RECIPES
+*/
 export const RECEIVE_RECIPES = 'RECEIVE_RECIPES';
-export const RECEIVE_RECIPE = 'RECEIVE_RECIPE';
-export const RANDOM_RECIPES = 'RANDOM_RECIPES';
-export const RECEIVE_USERINFO = 'RECEIVE_USERINFO';
+export const RECEIVE_RECIPES_SUCCESS = 'RECEIVE_RECIPES_SUCCESS';
+export const RECEIVE_RECIPES_FAILURE = 'RECEIVE_RECIPES_SUCCESS_FAILURE';
 
-//May be moved to config file
-const recipesEndpoint = '/api/weggo/recipes/';
-const recipeEndpoint = '/api/weggo/recipe';
-const loginUserEndpoint = '/api/weggo/user/loginuser';
-
-function reciveUserInfo(data) {
+function receiveRecipes() {
   return {
-    type: RECEIVE_USERINFO,
-    userInfoData: data
+    type: RECEIVE_RECIPES
   }
 }
 
-function receiveRecipes(data) {
+function receiveRecipesSuccess(recipes) {
   return {
-    type: RECEIVE_RECIPES,
-    recipesData: data
+    type: RECEIVE_RECIPES_SUCCESS,
+    recipes: recipes
   }
 }
 
-function receiveRecipe(data) {
+function receiveRecipesFailure(error) {
   return {
-    type: RECEIVE_RECIPE,
-    recipeData: data
-  }
-}
-
-function randomRecipes(data) {
-  return {
-    type: RANDOM_RECIPES,
-    randomRecipesData: data
-  }
-}
-
-//Fetching a specific recipe from Carrot API based on ID
-
-export function fetchRecipeByID( recipeID, state) {
-  return dispatch => {
-    return fetch(recipeEndpoint + '/' + recipeID)
-    .then((res) => res.json(),
-    (error) => console.log('An error occurred.', error))
-    .then(data => {
-      //add recipeObject to state
-      dispatch(receiveRecipe(data));
-    })
+    type: RECEIVE_RECIPES_FAILURE,
+    recipes: {error}
   }
 }
 
 //Fetching recipes from the Carrot API
 export function fetchRecipes() {
   return dispatch => {
-    return fetch(recipesEndpoint)
-    .then((res) => res.json(),
-    (error) => console.log('An error occurred.', error))
-    .then(data => {
-      const storeRecipes = [];
-      for(const recipeObject in data) {
-        storeRecipes.push(data[recipeObject]);
-      }
-      dispatch(receiveRecipes(storeRecipes));
+    carrotApi.getRecipes()
+    .then(results => {
+      dispatch(receiveRecipesSuccess(results))
+    }).catch(error => {
+      dispatch(receiveRecipesFailure(error))
     })
+  };
+};
+
+/*
+// RANDOM RECIPES
+*/
+
+export const RANDOM_RECIPES = 'RANDOM_RECIPES';
+export const RANDOM_RECIPES_SUCCESS = 'RANDOM_RECIPES_SUCCESS';
+export const RANDOM_RECIPES_FAILURE = 'RANDOM_RECIPES_FAILURE';
+
+function randomRecipes(recipes) {
+  return {
+    type: RANDOM_RECIPES
   }
 }
 
+function randomRecipesSuccess(updatedRecipes) {
+  return {
+    type: RANDOM_RECIPES_SUCCESS,
+    updatedRecipes: updatedRecipes
+  }
+}
 
-var visibleRecipes = [];
-var usedRecipes = [];
+function randomRecipesFailure(error) {
+  return {
+    type: RANDOM_RECIPES_FAILURE,
+    updatedRecipes: {error}
+  }
+}
 
-export const getRandomRecipes = (state, numberOfRecipes, index = null) => {
-  return (dispatch) => {
-    if (numberOfRecipes !== null || undefined) {
-      if (numberOfRecipes === 1) {
-        visibleRecipes = state.visibleRecipes;
-        usedRecipes = state.usedRecipes;
-      }
-      else {
-        visibleRecipes = [];
-        usedRecipes = [];
-      }
-      for(let i = 1; i <= numberOfRecipes; i++) {
-        let randomRecipeIndex = randomNumber(state);
-        usedRecipes.push(state.recipesData[randomRecipeIndex].id);
-        if (index === null) {
-          visibleRecipes.push(state.recipesData[randomRecipeIndex]);
-        }
-        else {
-            visibleRecipes[index] = state.recipesData[randomRecipeIndex];
-        }
-      }
+export const getRandomRecipes = (numberOfRecipes, index = null) => {
+  return dispatch => {
+    let updatedRecipesList = random.randomRecipes(numberOfRecipes, index = null);
+    if(updatedRecipesList.visibleRecipes !== null && updatedRecipesList.visibleRecipes.length > 0){
+      dispatch(randomRecipesSuccess({
+        usedRecipes: updatedRecipesList.usedRecipes,
+        visibleRecipes: updatedRecipesList.visibleRecipes
+      }));
     }
-    // console.log('visibleRecipes: ', visibleRecipes);
-    // console.log('usedRecipes: ', usedRecipes);
-    dispatch(randomRecipes({
-      usedRecipes: usedRecipes,
-      visibleRecipes: visibleRecipes
-    }));
+    else {
+      dispatch(randomRecipesFailure(updatedRecipesList));
+    }
   }
-}
-//funktion som slumpar fram ett indextal för att välja nytt recept.
-const randomNumber = (state) => {
-  let randNum = Math.floor(Math.random() * state.recipesData.length);
-//  console.log('randomNum: ', randNum,' receptlängd ', state.recipesData.length);
-  while (checkSelecedRecipe(state, randNum)) {
-    randNum = Math.floor(Math.random() * state.recipesData.length);
-  }
-  return randNum;
 }
 
-// Funktion för att kontrollera att ett indexnummer inte motsvarar ett receptid som redan valts
-const checkSelecedRecipe = (state, num) => {
-  //console.log('här vill vi titta: ', state.recipesData[num], usedRecipes);
-  const recipe = state.recipesData[num];
-  if (usedRecipes.indexOf(recipe.id) != -1) {
-    return true;
-  }
-  else{
-    return false;
+/*
+// SWITCH RECIPE
+*/
+
+export const SWITCH_RECIPE = 'SWITCH_RECIPE';
+export const SWITCH_RECIPE_SUCCESS = 'SWITCH_RECIPE_SUCCESS';
+export const SWITCH_RECIPE_FAILURE = 'SWITCH_RECIPE_FAILURE';
+
+function switchRecipe(recipe) {
+  return {
+    type: SWITCH_RECIPE,
+    recipe: recipe
   }
 }
+
+function switchRecipeSuccess(recipe) {
+  return {
+    type: SWITCH_RECIPE_SUCCESS,
+    recipe: recipe
+  }
+}
+
+function switchRecipeFailure(error) {
+  return {
+    type: SWITCH_RECIPE,
+    recipe: error
+  }
+}
+
+export const SEARCH_RECIPES = 'SEARCH_RECIPES';
+export const SEARCH_RECIPES_SUCCESS = 'SEARCH_RECIPES_SUCCESS';
+export const SEARCH_RECIPES_FAILURE = 'SEARCH_RECIPES_FAILURE';
+
+function searchRecipes(recipes) {
+  return {
+    type: SEARCH_RECIPES,
+    recipes: recipes
+  }
+}
+
+function searchRecipesSuccess(recipes) {
+  return {
+    type: SEARCH_RECIPES_SUCCESS,
+    recipes: recipes
+  }
+}
+
+function searchRecipesFailure(error) {
+  return {
+    type: SEARCH_RECIPES_SUCCESS,
+    recipes: error
+  }
+}
+
+/*
+// GET USER
+*/
+export const GET_USER = 'GET_USER';
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+export const GET_USER_FAILURE = 'GET_USER_FAILURE';
+
+function getUser(userData) {
+  return {
+    type: GET_USER,
+    userData: userData
+  }
+}
+
+function getUserSuccess(userData) {
+  return {
+    type: GET_USER_SUCCESS,
+    userData: userData
+  }
+}
+
+function getUserFailure(error) {
+  return {
+    type: GET_USER_FAILURE,
+    userData: error
+  }
+}
+
+
+/*
+// LOGIN USER
+*/
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
+export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
+
+function loginUser(data) {
+  return {
+    type: LOGIN_USER,
+    userData: data
+  }
+}
+
+function loginUserSuccess(data) {
+  return {
+    type: LOGIN_USER_SUCCESS,
+    userData: data
+  }
+}
+
+function loginUserFailure(error) {
+  return {
+    type: LOGIN_USER_FAILURE,
+    userData: error
+  }
+}
+
 
 export const loginUserWithEmailAndPassword = (state, email, password) => {
   return dispatch => {
@@ -135,14 +208,4 @@ export const loginUserWithEmailAndPassword = (state, email, password) => {
       dispatch(reciveUserInfo(data));
     })
   }
-}
-
-export const  makeRecipesList = (recipeObject) => {
-  const recipesList = [];
-  for (const recipe in recipeObject) {
-    if (recipeObject) {
-      recipesList.push(recipeObject[recipe]);
-    }
-  }
-  return recipesList;
 }
