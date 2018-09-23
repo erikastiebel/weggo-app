@@ -9,7 +9,7 @@ const cookingInstructionsList = (cookingInstructionsObject) => {
     cookingInstructionsArray.push(cookingInstructionsObject[cookingInstruction]);
   }
   return cookingInstructionsArray;
-  console.log(cookingInstructionsObject);
+  console.log('cookingInstructionsObject: ', cookingInstructionsObject);
 }
 
 const renderList = (cookingInstructionsArray) => {
