@@ -25,7 +25,6 @@ export default function recipesReducer( state = {recipes:{}, isLoading: false, e
 
 function convertRecipes(recipes){
   const storeRecipes = [];
-    console.log('recipes in reducer ',recipes);
     for(const recipeObject in recipes) {
       storeRecipes.push(recipes[recipeObject]);
     }

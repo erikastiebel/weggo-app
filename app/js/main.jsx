@@ -14,10 +14,6 @@ const store = createStore(
   applyMiddleware(thunkMiddleware)
 );
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
-
 render (
   <Provider store={store}>
     <App />
