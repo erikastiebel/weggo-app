@@ -217,20 +217,19 @@ function loginUserFailure(error) {
 }
 
 
-export const loginUserWithEmailAndPassword = (state, email, password) => {
+export const loginUserWithEmailAndPassword = (email, password) => {
+  console.log('EMAIL+PASSW i action: ', email , ' & ', password);
   return dispatch => {
-    const urlWithParams = loginUserEndpoint + '?username='+ encodeURIComponent(email) +'&password='+ encodeURIComponent(password);
-    return fetch(urlWithParams, {
-      method: 'POST'
-    })
-    .then((res) => res.json(),
-    (error) => console.log('An error occurred.', error))
-    .then(data => {
-      console.log(data);
-      dispatch(reciveUserInfo(data));
+    carrotApi.loginUserToFirebase(email, password)
+    .then(results => {
+      console.log('Response from Login: ', results.user);
+      dispatch(loginUserSuccess(results.user))
+    }).catch(error => {
+      dispatch(loginUserFailure(error))
     })
   }
 }
+
 
 
 export const saveMenuList = () => {
@@ -242,3 +241,43 @@ export const saveMenuList = () => {
 
   }
 }
+
+/*
+// LOGOUT USER
+*/
+// export const LOGOUT_USER = 'LOGOUT_USER';
+// export const LOGOUT_USER_SUCCESS = 'LOGOUT_USER_SUCCESS';
+// export const LOGOUT_USER_FAILURE = 'LOGOUT_USER_FAILURE';
+//
+// function logoutUser(data) {
+//   return {
+//     type: LOGOUT_USER,
+//     userData: data
+//   }
+// }
+//
+// function logoutUserSuccess(data) {
+//   return {
+//     type: LOGOUT_USER_SUCCESS,
+//     userData: data
+//   }
+// }
+//
+// function logoutUserFailure(error) {
+//   return {
+//     type: LOGOUT_USER_FAILURE,
+//     userData: error
+//   }
+// }
+//
+// export const logoutUser = () => {
+//   return dispatch => {
+//     carrotApi.logoutUserFromFirebase()
+//     .then(results => {
+//       dispatch(logoutUserSuccess(results))
+//     }).catch(error => {
+//       dispatch(logoutUserFailure(error))
+//     })
+//   }
+// }
+
