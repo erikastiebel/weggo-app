@@ -7,7 +7,7 @@ import Header from '../components/Header/Header';
 import RecipeButtons from '../components/RecipeButtons/RecipeButtons';
 import Recipes from '../components/Recipes';
 import RecipeContainer from './RecipeContainer/RecipeContainer';
-import Login from '../components/Login';
+import Login from '../components/Login/Login';
 
 import style from '../../scss/style.scss';
 
@@ -22,7 +22,9 @@ const Home = () => (
 class App extends Component {
 
   static propTypes = {
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    userData: PropTypes.object.isRequired
+
   }
 
   componentDidMount() {
@@ -33,7 +35,7 @@ class App extends Component {
     return (
       <BrowserRouter>
           <div>
-              <Header ></Header>
+              <Header userData={this.props.userData}></Header>
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/recipes/:number" component={Recipes} />
@@ -46,9 +48,10 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  const {recipesData} = state;
   return {
-    recipesData: recipesData
+    state: state,
+    recipesData: state.recipesData,
+    userData: state.userData
   };
 }
 
