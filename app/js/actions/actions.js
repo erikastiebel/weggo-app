@@ -1,5 +1,6 @@
 import * as carrotApi from '../api/carrotApi';
 import * as random from '../utils/randomRecipes';
+import * as collect from '../utils/collectMenu';
 
 
 /*
@@ -230,6 +231,17 @@ export const loginUserWithEmailAndPassword = (email, password) => {
 }
 
 
+
+export const saveMenuList = () => {
+  return dispatch => {
+    //1. Formatera till JSON (anropa collectMenu funktionen)
+    const jsonFormatedMenuList = collect.collectMenu();
+    console.log('MENYN: ', jsonFormatedMenuList);
+    //2. Anropa funktionen i api-filen som ska skicka den formaterade listan till Carrot
+
+  }
+}
+
 /*
 // LOGOUT USER
 */
@@ -268,3 +280,4 @@ export const loginUserWithEmailAndPassword = (email, password) => {
 //     })
 //   }
 // }
+
