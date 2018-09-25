@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loginUserWithEmailAndPassword } from '../../actions/actions';
+import { loginUserAction } from '../../actions/actions';
 
 import style from './Login.scss';
 
@@ -31,7 +31,7 @@ class Login extends Component {
 
   submitMenuListHandler = e => {
     e.preventDefault();
-    this.props.dispatch(loginUserWithEmailAndPassword(
+    this.props.dispatch(loginUserAction(
       this.state.email,
       this.state.password)
     )
