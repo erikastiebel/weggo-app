@@ -195,10 +195,9 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
 export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
 
-function loginUser(data) {
+function loginUser() {
   return {
-    type: LOGIN_USER,
-    userData: data
+    type: LOGIN_USER
   }
 }
 
@@ -217,7 +216,7 @@ function loginUserFailure(error) {
 }
 
 
-export const loginUserWithEmailAndPassword = (email, password) => {
+export const loginUserAction = (email, password) => {
   console.log('EMAIL+PASSW i action: ', email , ' & ', password);
   return dispatch => {
     carrotApi.loginUserToFirebase(email, password)
@@ -231,6 +230,51 @@ export const loginUserWithEmailAndPassword = (email, password) => {
 }
 
 
+/*
+// LOGOUT USER
+*/
+export const LOGOUT_USER = 'LOGOUT_USER';
+export const LOGOUT_USER_SUCCESS = 'LOGOUT_USER_SUCCESS';
+export const LOGOUT_USER_FAILURE = 'LOGOUT_USER_FAILURE';
+
+function logoutUser() {
+  return {
+    type: LOGOUT_USER
+  }
+}
+
+function logoutUserSuccess() {
+  return {
+    type: LOGOUT_USER_SUCCESS
+  }
+}
+
+function logoutUserFailure(error) {
+  return {
+    type: LOGOUT_USER_FAILURE,
+    error: error
+  }
+}
+
+export const logoutUserAction = () => {
+  console.log('Loggar ut');
+  return dispatch => {
+    carrotApi.logoutUserFromFirebase()
+    .then(results => {
+      dispatch(logoutUserSuccess())
+    }).catch(error => {
+      dispatch(logoutUserFailure(error))
+    })
+  }
+}
+
+
+
+
+
+
+
+
 
 export const saveMenuList = () => {
   return dispatch => {
@@ -241,43 +285,3 @@ export const saveMenuList = () => {
 
   }
 }
-
-/*
-// LOGOUT USER
-*/
-// export const LOGOUT_USER = 'LOGOUT_USER';
-// export const LOGOUT_USER_SUCCESS = 'LOGOUT_USER_SUCCESS';
-// export const LOGOUT_USER_FAILURE = 'LOGOUT_USER_FAILURE';
-//
-// function logoutUser(data) {
-//   return {
-//     type: LOGOUT_USER,
-//     userData: data
-//   }
-// }
-//
-// function logoutUserSuccess(data) {
-//   return {
-//     type: LOGOUT_USER_SUCCESS,
-//     userData: data
-//   }
-// }
-//
-// function logoutUserFailure(error) {
-//   return {
-//     type: LOGOUT_USER_FAILURE,
-//     userData: error
-//   }
-// }
-//
-// export const logoutUser = () => {
-//   return dispatch => {
-//     carrotApi.logoutUserFromFirebase()
-//     .then(results => {
-//       dispatch(logoutUserSuccess(results))
-//     }).catch(error => {
-//       dispatch(logoutUserFailure(error))
-//     })
-//   }
-// }
-
