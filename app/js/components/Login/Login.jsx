@@ -31,7 +31,6 @@ class Login extends Component {
   };
 
   submitMenuListHandler = e => {
-    alert(this.state.email + ' & ' + this.state.password);
     if (e) e.preventDefault();
     this.props.dispatch(loginUserAction(
       this.state.email,

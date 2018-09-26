@@ -257,7 +257,7 @@ function logoutUserFailure(error) {
 }
 
 export const logoutUserAction = () => {
-  console.log('BLÄÄÄÄÄ');
+  console.log('Loggar ut');
   return dispatch => {
     carrotApi.logoutUserFromFirebase()
     .then(results => {
