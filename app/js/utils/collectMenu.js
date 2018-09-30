@@ -7,5 +7,5 @@ export const collectMenu = () => {
   allRecipes.forEach((recipe, index) => {
     formatedList[index] = recipe.id;
   });
-  return JSON.stringify(formatedList);
+  return formatedList;
 }

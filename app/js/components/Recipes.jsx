@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RecipeCard from './RecipeCard/RecipeCard';
-import { getRandomRecipes, getNewRecipe, saveMenuList } from '../actions/actions';
+import { getRandomRecipes, getNewRecipe, saveMenuListAction } from '../actions/actions';
 import SaveListButton from '../components/SaveListButton/SaveListButton';
 
 import style from './recipes.scss';
@@ -56,7 +56,7 @@ class Recipes extends Component {
 
   render() {
     const { dispatch } = this.props;
-    const saveMenu = bindActionCreators(saveMenuList, dispatch);
+    const saveMenu = bindActionCreators(saveMenuListAction, dispatch);
 
     return (
 
