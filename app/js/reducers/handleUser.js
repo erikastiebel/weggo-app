@@ -4,13 +4,10 @@ import {
   LOGIN_USER_FAILURE,
   LOGOUT_USER,
   LOGOUT_USER_SUCCESS,
-  LOGOUT_USER_FAILURE,
-  SAVE_MENU_LIST,
-  SAVE_MENU_LIST_SUCCESS,
-  SAVE_MENU_LIST_FAILURE
+  LOGOUT_USER_FAILURE
 } from '../actions/actions';
 
-export default function loginUserReducer( state = {isLogedIn: false, isLoading: false, user:{}, error: null}, action ) {
+export default function handleUserReducer( state = {isLogedIn: false, isLoading: false, user:{}, error: null}, action ) {
   switch (action.type) {
 
   case LOGIN_USER:

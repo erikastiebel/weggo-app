@@ -282,14 +282,14 @@ function saveMenuList() {
 function saveMenuListSuccess(data) {
   return {
     type: SAVE_MENU_LIST_SUCCESS,
-    userData: data
+    recipeListData: data
   }
 }
 
 function saveMenuListFailure(error) {
   return {
     type: SAVE_MENU_LIST_FAILURE,
-    userData: error
+    recipeListData: error
   }
 }
 
@@ -299,8 +299,8 @@ export const saveMenuListAction= () => {
     console.log('MENYN: ', menuList);
     carrotApi.saveMenuToUser(menuList)
     .then(results => {
-      console.log('Vad får vi här: ', results);
-      dispatch(saveMenuListSuccess())
+      console.log('Vad får vi här: ', results.body);
+      dispatch(saveMenuListSuccess(results.body))
     }).catch(error => {
       dispatch(saveMenuListFailure(error))
     })
