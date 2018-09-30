@@ -7,7 +7,7 @@ import {
   LOGOUT_USER_FAILURE
 } from '../actions/actions';
 
-export default function loginUserReducer( state = {isLogedIn: false, isLoading: false, user:{}, error: null}, action ) {
+export default function handleUserReducer( state = {isLogedIn: false, isLoading: false, user:{}, error: null}, action ) {
   switch (action.type) {
 
   case LOGIN_USER:

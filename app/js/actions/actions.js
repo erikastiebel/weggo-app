@@ -217,11 +217,9 @@ function loginUserFailure(error) {
 
 
 export const loginUserAction = (email, password) => {
-  console.log('EMAIL+PASSW i action: ', email , ' & ', password);
   return dispatch => {
     carrotApi.loginUserToFirebase(email, password)
     .then(results => {
-      console.log('Response from Login: ', results.user);
       dispatch(loginUserSuccess(results.user))
     }).catch(error => {
       dispatch(loginUserFailure(error))
@@ -257,7 +255,6 @@ function logoutUserFailure(error) {
 }
 
 export const logoutUserAction = () => {
-  console.log('Loggar ut');
   return dispatch => {
     carrotApi.logoutUserFromFirebase()
     .then(results => {
@@ -269,19 +266,43 @@ export const logoutUserAction = () => {
 }
 
 
+/*
+// SAVE MENU LIST
+*/
+export const SAVE_MENU_LIST = 'SAVE_MENU_LIST';
+export const SAVE_MENU_LIST_SUCCESS = 'SAVE_MENU_LIST_SUCCESS';
+export const SAVE_MENU_LIST_FAILURE = 'SAVE_MENU_LIST_FAILURE';
 
+function saveMenuList() {
+  return {
+    type: SAVE_MENU_LIST
+  }
+}
 
+function saveMenuListSuccess(data) {
+  return {
+    type: SAVE_MENU_LIST_SUCCESS,
+    recipeListData: data
+  }
+}
 
+function saveMenuListFailure(error) {
+  return {
+    type: SAVE_MENU_LIST_FAILURE,
+    recipeListData: error
+  }
+}
 
-
-
-
-export const saveMenuList = () => {
+export const saveMenuListAction= () => {
   return dispatch => {
-    //1. Formatera till JSON (anropa collectMenu funktionen)
-    const jsonFormatedMenuList = collect.collectMenu();
-    console.log('MENYN: ', jsonFormatedMenuList);
-    //2. Anropa funktionen i api-filen som ska skicka den formaterade listan till Carrot
-
+    const menuList = collect.collectMenu();
+    console.log('MENYN: ', menuList);
+    carrotApi.saveMenuToUser(menuList)
+    .then(results => {
+      console.log('Vad får vi här: ', results.body);
+      dispatch(saveMenuListSuccess(results.body))
+    }).catch(error => {
+      dispatch(saveMenuListFailure(error))
+    })
   }
 }
